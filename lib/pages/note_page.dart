@@ -32,6 +32,11 @@ class _NotePageState extends State<NotePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Notes'), // fixed line 26: no widget.title exists
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.add, color: Colors.black26),
+      ),
       body: notes.isEmpty
           ? Center(
               child: Column(
