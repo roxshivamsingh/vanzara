@@ -48,3 +48,32 @@ Future<int> onCreateNotes(
     'color': color,
   });
 }
+
+Future<List<Map<String, dynamic>>> getNotes() async {
+  final db = await NoteDatabase.instance.database;
+
+  return await db.query('notes', orderBy: 'date desc');
+}
+
+Future<int> updateNotes(
+  int id,
+
+  String title,
+  String description,
+  String date,
+  int color,
+) async {
+  final db = await NoteDatabase.instance.database;
+  return await db.update(
+    'notes',
+    {'title': title, 'date': date, 'description': description, 'color': color},
+
+    where: "id = ?",
+    whereArgs: [id],
+  );
+}
+
+Future<int> deleteNote(int id) async {
+  final db = await NoteDatabase.instance.database;
+  return await db.delete('notes', where: "id = ?", whereArgs: [id]);
+}
