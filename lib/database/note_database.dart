@@ -33,3 +33,18 @@ color INTEGER NOT NULL DEFAULT 0
 )
  ''');
 }
+
+Future<int> onCreateNotes(
+  String title,
+  String description,
+  String date,
+  int color,
+) async {
+  final db = await NoteDatabase.instance.database;
+  return db.insert('notes', {
+    'title': title,
+    'date': date,
+    'description': description,
+    'color': color,
+  });
+}
